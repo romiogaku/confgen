@@ -33,3 +33,4 @@ swagger/swaggerassets/swagger.go
 .DS_Store
 
 # ignore binary
+confgen
