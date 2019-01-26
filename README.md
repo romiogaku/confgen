@@ -16,7 +16,7 @@ $ go build
 ## Usage
 ```bash
 $ confgen -h
-Usage of ./confgen:
+Usage of confgen:
   -file string
     	template file path
   -node value
