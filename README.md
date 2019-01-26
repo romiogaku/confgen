@@ -1,7 +1,7 @@
 # confgen
-`confgen` is simple [confd](https://github.com/kelseyhightower/confd).
+`confgen` is configuration file generation tool.
 
-`confgen` does not need template resources.
+`confgen` is similar to [confd](https://github.com/kelseyhightower/confd), but you do not need template resources.
 All you need is a configuration template file.
 
 ## Support Backend
