@@ -6,24 +6,27 @@ All you need is a configuration template file.
 
 ## Support Backend
 - etcdv3
+- consul
+- zookeeper
 
 ## Build
 ```bash
-$ dep ensure
-$ go build
+$ make all
 ```
 
 ## Usage
 ```bash
 $ confgen -h
-Usage of confgen:
+Usage of ./confgen:
+  -backend string
+    	backend name
   -file string
     	template file path
   -node value
     	list of backend nodes
 ```
 
-## Quick Start
+## Quick Start (example: etcd)
 ### Install etcd
 https://github.com/etcd-io/etcd/releases
 

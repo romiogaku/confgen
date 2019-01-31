@@ -32,5 +32,3 @@ swagger/swaggerassets/swagger.go
 # should be ignored on mac os
 .DS_Store
 
-# ignore binary
-confgen
