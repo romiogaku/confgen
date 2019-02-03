@@ -15,3 +15,7 @@ depend:
 
 build:
 	@go build -o $(BUILD_OUTPUT_FILE) cmd/confgen/main.go
+
+test:
+	@echo "Running tests..."
+	@go test `go list ./... | grep -v vendor/`
