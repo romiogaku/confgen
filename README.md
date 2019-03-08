@@ -43,20 +43,20 @@ OK
 ### Run confgen
 
 ```bash
-$ confgen -file example/.env.tmpl -node localhost:2379
+$ confgen -backend etcd -file example/.env.tmpl -node localhost:2379
 DBHOST = localhost
 
-$ confgen -file example/application.conf.tmpl -node localhost:2379
+$ confgen -backend etcd -file example/application.conf.tmpl -node localhost:2379
 db {
   host = "localhost"
 }
 
-$ confgen -file example/config.toml.tmpl -node localhost:2379
+$ confgen -backend etcd -file example/config.toml.tmpl -node localhost:2379
 [server]
 DBHost = localhost
 ```
 
 ### Output File
 ```bash
-$ confgen -file example/.env.tmpl -node localhost:2379 > .env
+$ confgen -backend etcd -file example/.env.tmpl -node localhost:2379 > .env
 ```
