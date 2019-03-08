@@ -32,3 +32,5 @@ swagger/swaggerassets/swagger.go
 # should be ignored on mac os
 .DS_Store
 
+# release binaries
+release/
