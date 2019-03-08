@@ -7,6 +7,9 @@ endif
 
 all: cleandep depend build
 
+# required gox
+package: cleandep depend release
+
 cleandep:
 	@rm -rf vendor
 
@@ -15,6 +18,10 @@ depend:
 
 build:
 	@go build -o $(BUILD_OUTPUT_FILE) cmd/confgen/main.go
+
+release:
+	@rm -rf release
+	@gox -output="release/confgen_{{.OS}}_{{.Arch}}" ./...
 
 test:
 	@echo "Running tests..."
