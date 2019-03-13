@@ -17,11 +17,12 @@ func init() {
 	flag.StringVar(&parse.Path, "file", "", "template file path")
 	flag.StringVar(&config.Backend, "backend", "", "backend name")
 	flag.Var(&config.BackendNodes, "node", "list of backend nodes")
+	flag.StringVar(&config.Key, "key", "", "key name")
 	flag.Parse()
 
 	// validation
-	if parse.Path == "" {
-		fmt.Fprintln(os.Stderr, "file parameter required.")
+	if parse.Path == "" && config.Key == "" {
+		fmt.Fprintln(os.Stderr, "file or key parameter required.")
 		os.Exit(1)
 	}
 	if config.Backend == "" {
@@ -51,6 +52,11 @@ func getValue(key string) string {
 }
 
 func main() {
+	if config.Key != "" {
+		fmt.Print(getValue(config.Key))
+		return
+	}
+
 	parse.GetValueFuncMap = map[string]interface{}{"v": getValue}
 	err := parse.Execute(os.Stdout)
 	if err != nil {

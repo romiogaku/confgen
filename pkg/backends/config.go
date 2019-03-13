@@ -9,6 +9,7 @@ type Config struct {
 	TemplateFilePath string
 	Backend          string
 	BackendNodes     Nodes
+	Key              string
 }
 
 // Nodes is a custom flag Var representing a list of etcd nodes.
