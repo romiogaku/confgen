@@ -17,11 +17,12 @@ $ make all
 ## Usage
 ```bash
 $ confgen -h
-Usage of ./confgen:
   -backend string
     	backend name
   -file string
     	template file path
+  -key string
+    	key name
   -node value
     	list of backend nodes
 ```
@@ -59,4 +60,9 @@ DBHost = localhost
 ### Output File
 ```bash
 $ confgen -backend etcd -file example/.env.tmpl -node localhost:2379 > .env
+```
+
+### Simple get value
+```bash
+$ confgen -backend etcd -node dev-confstore01:2379 -key /myapp/database/host
 ```
