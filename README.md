@@ -66,3 +66,71 @@ $ confgen -backend etcd -file example/.env.tmpl -node localhost:2379 > .env
 ```bash
 $ confgen -backend etcd -node dev-confstore01:2379 -key /myapp/database/host
 ```
+
+## Template Functions
+### v
+Returns the value as a string where key matches its argument.
+
+Data:
+
+| K   | V     |
+|-----|-------|
+| key | value |
+
+Template:
+
+```
+value: {{v "/key"}}
+```
+
+Output:
+
+```
+value: value
+```
+
+### explode
+Split a string by a delimiter. Returns an array of string.
+
+Data:
+
+| K     | V                 |
+|-------|-------------------|
+| hosts | host1,host2,host3 |
+
+Template:
+
+```
+{{$hosts := explode "/hosts" ","}}
+{{$hosts}}
+```
+
+Output:
+
+```
+[host1 host2 host3]
+```
+
+
+
+### join
+Alias for the [strings.Join](https://golang.org/pkg/strings/#Join) function.
+
+Data:
+
+| K     | V                 |
+|-------|-------------------|
+| hosts | host1,host2,host3 |
+
+Template:
+
+```
+{{$hosts := explode "/hosts" ","}}
+hosts => ["{{join $hosts "\",\""}}"]
+```
+
+Output:
+
+```
+hosts => ["host1","host2","host3"]
+```

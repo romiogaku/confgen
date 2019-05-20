@@ -1,9 +1,9 @@
 package template
 
 import (
-	"html/template"
 	"io"
 	"path"
+	"text/template"
 )
 
 // Parse file struct
