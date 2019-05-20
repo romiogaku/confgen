@@ -126,11 +126,34 @@ Template:
 
 ```
 {{$hosts := explode "/hosts" ","}}
-hosts => ["{{join $hosts "\",\""}}"]
+hosts = ["{{join $hosts "\",\""}}"]
 ```
 
 Output:
 
 ```
-hosts => ["host1","host2","host3"]
+hosts = ["host1","host2","host3"]
+```
+
+### last
+Returns true if first argument is last index of second argument.
+Second argument is array.
+
+Data:
+
+| K     | V                 |
+|-------|-------------------|
+| hosts | host1,host2,host3 |
+
+Template:
+
+```
+{{$hosts := explode "/hosts" ","}}
+hosts = [{{range $i, $e := $hosts}}"{{$e}}"{{if not (last $i $hosts)}},{{end}}{{end}}]
+```
+
+Output:
+
+```
+hosts = ["host1","host2","host3"]
 ```
