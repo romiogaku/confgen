@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"strings"
 
 	b "github.com/romiogaku/confgen/pkg/backends"
 	t "github.com/romiogaku/confgen/pkg/template"
@@ -51,13 +52,27 @@ func getValue(key string) string {
 	return v
 }
 
+func getArrayValue(key string, sep string) []string {
+	v := getValue(key)
+	return strings.Split(v, sep)
+}
+
+func join(values []string, sep string) string {
+	ret := strings.Join(values, sep)
+	return ret
+}
+
 func main() {
 	if config.Key != "" {
 		fmt.Print(getValue(config.Key))
 		return
 	}
 
-	parse.GetValueFuncMap = map[string]interface{}{"v": getValue}
+	parse.GetValueFuncMap = map[string]interface{}{
+		"v":       getValue,
+		"explode": getArrayValue,
+		"join":    join,
+	}
 	err := parse.Execute(os.Stdout)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
