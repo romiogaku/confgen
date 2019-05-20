@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"reflect"
 	"strings"
 
 	b "github.com/romiogaku/confgen/pkg/backends"
@@ -62,6 +63,10 @@ func join(values []string, sep string) string {
 	return ret
 }
 
+func last(i int, a interface{}) bool {
+	return i == reflect.ValueOf(a).Len()-1
+}
+
 func main() {
 	if config.Key != "" {
 		fmt.Print(getValue(config.Key))
@@ -72,6 +77,7 @@ func main() {
 		"v":       getValue,
 		"explode": getArrayValue,
 		"join":    join,
+		"last":    last,
 	}
 	err := parse.Execute(os.Stdout)
 	if err != nil {
